@@ -76,6 +76,28 @@ def createStrokeModel():
     return joblib.load("random_forest_stroke.pkl"), joblib.load("scaler.pkl")
 
 def createCardiovascularDiseaseModel():
-    pass
+    # Read in Dataframe
+    cardio = pd.read_csv('cardio_train.csv')
+    cardio['age'] = cardio['age']/365
+
+    # Intialize X and y variables
+    X = cardio.drop('cardio')
+    y = cardio['cardio']
+
+    # Separate into testing and training sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 38)
+
+    # Scale features
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    
+    # Train model
+    rf = RandomForestClassifier(n_estimators=1000,max_leaf_nodes=35, random_state=38)
+    rf.fit(X_train_scaled, y_train)
+
+    joblib.dump(rf, 'random_forest_cardio.pkl')
+    joblib.dump(scaler, 'scaler.pkl')
+    return joblib.load("random_forest_stroke.pkl"), joblib.load("scaler.pkl")
+
 if __name__ == "__main__":
     createDiabetesModel()
