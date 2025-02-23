@@ -1,10 +1,14 @@
 from flask import Flask, request, jsonify
-import joblib
 import numpy as np
-import pandas as pd
+from flask_cors import CORS 
 from model_code import createDiabetesModel, createStrokeModel, createCardiovascularDiseaseModel
 
 app = Flask(__name__)
+CORS(app, resources={
+    r"/diabetes": {"origins": "*"},
+    r"/stroke": {"origins": "*"},
+    r"/heart-disease": {"origins": "*"}
+})
 diabetesModel, diabetesScalar = createDiabetesModel()
 strokeModel, strokeScalar = createStrokeModel()
 cardioModel, cardioScalar = createCardiovascularDiseaseModel()
@@ -23,10 +27,10 @@ def diabetesAssessment():
 
     # Output result
     return jsonify({
-        "Percent Risk": f"{risk_percentage[0]:.2f}%",
+        "Percent Risk": f"{risk_percentage[0]:.0f}%",
         "Prediction": (
-            "high risk" if risk_percentage[0] >= 0.6 else
-            "moderate risk" if risk_percentage[0] >= 0.4 else
+            "high risk" if risk_percentage[0] >= 60 else
+            "moderate risk" if risk_percentage[0] >= 40 else
             "low risk"
         )
     })
@@ -43,10 +47,10 @@ def strokeAssessment():
 
     # Output result
     return jsonify({
-    "Percent Risk": f"{risk_percentage[0]:.2f}%",
+    "Percent Risk": f"{risk_percentage[0]:.0f}%",
     "Prediction": (
-        "high risk" if risk_percentage[0] >= 0.4 else
-        "moderate risk" if risk_percentage[0] >= 0.2 else
+        "high risk" if risk_percentage[0] >= 40 else
+        "moderate risk" if risk_percentage[0] >= 20 else
         "low risk"
     )
     })
@@ -63,10 +67,10 @@ def cardioAssessment():
 
     # Output result
     return jsonify({
-        "Percent Risk": f"{risk_percentage[0]:.2f}%",
+        "Percent Risk": f"{risk_percentage[0]:.0f}%",
         "Prediction": (
-            "high risk" if risk_percentage[0] >= 0.6 else
-            "moderate risk" if risk_percentage[0] >= 0.4 else
+            "high risk" if risk_percentage[0] >= 60 else
+            "moderate risk" if risk_percentage[0] >= 40 else
             "low risk"
         )
     })
