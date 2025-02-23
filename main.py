@@ -25,10 +25,9 @@ def diabetesAssessment():
     return jsonify({
         "Percent Risk": f"{risk_percentage[0]:.2f}%",
         "Prediction": (
-            "High Risk of Diabetes" if risk_percentage[0] >= 0.6 else
-            "Moderate Risk of Diabetes" if risk_percentage[0] >= 0.4 else
-            "Low Risk of Diabetes" if risk_percentage[0] >= 0.3 else
-            "Diabetes not likely"
+            "high risk" if risk_percentage[0] >= 0.6 else
+            "moderate risk" if risk_percentage[0] >= 0.4 else
+            "low risk"
         )
     })
 @app.route("/stroke", methods=["POST"])
@@ -46,10 +45,9 @@ def strokeAssessment():
     return jsonify({
     "Percent Risk": f"{risk_percentage[0]:.2f}%",
     "Prediction": (
-        "High Risk of Stroke" if risk_percentage[0] >= 0.4 else
-        "Moderate Risk of Stroke" if risk_percentage[0] >= 0.2 else
-        "Low Risk of Stroke" if risk_percentage[0] >= 0.1 else
-        "Stroke not likely"
+        "high risk" if risk_percentage[0] >= 0.4 else
+        "moderate risk" if risk_percentage[0] >= 0.2 else
+        "low risk"
     )
     })
 @app.route("/heart-disease", methods=["POST"])
@@ -67,10 +65,9 @@ def cardioAssessment():
     return jsonify({
         "Percent Risk": f"{risk_percentage[0]:.2f}%",
         "Prediction": (
-            "High Risk of Cardiovascular Disease" if risk_percentage[0] >= 0.6 else
-            "Moderate Risk of Cardiovascular Disease" if risk_percentage[0] >= 0.4 else
-            "Low Risk of Cardiovascular Disease" if risk_percentage[0] >= 0.3 else
-            "Cardiovascular Disease not likely"
+            "high risk" if risk_percentage[0] >= 0.6 else
+            "moderate risk" if risk_percentage[0] >= 0.4 else
+            "low risk"
         )
     })
 if __name__ == "__main__":
