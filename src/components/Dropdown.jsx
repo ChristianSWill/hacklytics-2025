@@ -15,11 +15,12 @@ const Dropdown = ({ label, values, onChange, name }) => {
           pick one
         </option>
         {values.map((opt, index) => {
-          return (
-            <option value={index} key={index}>
-              {opt}
-            </option>
-          );
+          if (opt !== "")
+            return (
+              <option value={index} key={index}>
+                {opt}
+              </option>
+            );
         })}
       </select>
     </section>
