@@ -12,7 +12,7 @@ def createDiabetesModel():
     diabetes = pd.read_csv('diabetes.csv')
 
     # Initialize X and y variables
-    X = diabetes[['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']]
+    X = diabetes[['Pregnancies', 'BloodPressure', 'BMI', 'DiabetesPedigreeFunction', 'Age']]
     y = diabetes['Outcome']
 
     # Separate into training and test sets
@@ -27,7 +27,7 @@ def createDiabetesModel():
     rf.fit(X_train_scaled, y_train)
 
     joblib.dump(rf, 'random_forest_diabetes.pkl')
-    joblib.dump(scaler, 'scaler.pkl')
+    joblib.dump(scaler, 'diabetes_scaler.pkl')
     return joblib.load("random_forest_diabetes.pkl"), joblib.load("scaler.pkl")
     # Get risk percentage for training and testing
     # risk_percentages_test = rf.predict_proba(X_test_scaled)[:, 1]
@@ -57,7 +57,7 @@ def createStrokeModel():
     stroke = pd.get_dummies(stroke)
     
     # Initialize X and y variables
-    X = stroke.drop('stroke')
+    X = stroke.drop(columns='stroke')
     y = stroke['stroke']
 
     # Separate into training and test sets
@@ -72,7 +72,7 @@ def createStrokeModel():
     rf.fit(X_train_scaled, y_train)
 
     joblib.dump(rf, 'random_forest_stroke.pkl')
-    joblib.dump(scaler, 'scaler.pkl')
+    joblib.dump(scaler, 'stroke_scaler.pkl')
     return joblib.load("random_forest_stroke.pkl"), joblib.load("scaler.pkl")
 
 def createCardiovascularDiseaseModel():
