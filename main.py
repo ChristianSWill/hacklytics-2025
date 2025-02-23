@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify
 import joblib
 import numpy as np
-from diabetes_code import createDiabetesModel
+from model_code import createDiabetesModel
 
 app = Flask(__name__)
 diabetesModel, diabetesScalar = createDiabetesModel()
