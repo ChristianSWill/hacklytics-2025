@@ -1,7 +1,7 @@
 #root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
 }
 
 .navbar {
@@ -44,6 +44,8 @@
   display: grid;
   grid-template-columns: 2fr 1fr;
   flex: 1;
+  height: 100%;
+  overflow: hidden;
 }
 
 .questions {
@@ -52,14 +54,28 @@
   gap: 2em;
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.questions > h2 {
+  align-self: center;
+  padding-top: 1em;
 }
 
 .question-wrapper {
   margin-top: 20px;
   display: grid;
-  grid-template-columns: auto auto;
+  align-items: end;
+  grid-template-columns: 1fr 1fr;
   gap: 2em 5em;
-  padding: 0 5em;
+  padding: 0 3em;
 }
 
 .question-card {
@@ -88,6 +104,16 @@
   &:focus, &:hover {
     outline: none;
     border-color: var(--primary-color);
+  }
+}
+
+.double-question {
+  display: flex;
+  width: 100%;
+  gap: 2em;
+
+  .question-input {
+    width: 50%;
   }
 }
 
