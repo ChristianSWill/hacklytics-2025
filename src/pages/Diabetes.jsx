@@ -63,7 +63,13 @@ const Diabetes = () => {
         </div>
         <button className="question-submit">Calculate Risks</button>
       </div>
-      <div className="risk">Risks</div>
+      <div className="risk">
+        <h2 className="risk-header">Diabetes Risk:</h2>
+        <div className="risk-percent">49%</div>
+        <p className="risk-text">
+          You have a <span>moderate risk</span> of getting Type One Diabetes
+        </p>
+      </div>
     </main>
   );
 };
