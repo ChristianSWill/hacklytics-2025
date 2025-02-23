@@ -79,19 +79,19 @@
   padding: 0 3em;
 }
 
-.question-card {
+.question-card, .dropdown-card {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   height: fit-content;
 }
 
-.question-label {
+.question-label, .dropdown-label {
   font-size: 1.25rem;
   font-weight: bold;
 }
 
-.question-input {
+.question-input, .dropdown-select {
   border: 5px solid var(--white-color);
   color: var(--text-color);
   background-color: transparent;
@@ -105,6 +105,15 @@
   &:focus, &:hover {
     outline: none;
     border-color: var(--primary-color);
+  }
+}
+
+.dropdown-select {
+  &:invalid {
+    color: gray;
+  }
+  option:not(:disabled) {
+    color: var(--black-color);
   }
 }
 
