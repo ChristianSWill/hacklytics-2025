@@ -74,5 +74,8 @@ def createStrokeModel():
     joblib.dump(rf, 'random_forest_stroke.pkl')
     joblib.dump(scaler, 'scaler.pkl')
     return joblib.load("random_forest_stroke.pkl"), joblib.load("scaler.pkl")
+
+def createCardiovascularDiseaseModel():
+    pass
 if __name__ == "__main__":
     createDiabetesModel()
