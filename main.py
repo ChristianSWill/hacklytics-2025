@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import joblib
 import numpy as np
+import pandas as pd
 from model_code import createDiabetesModel, createStrokeModel
 
 app = Flask(__name__)
@@ -25,8 +26,7 @@ def diabetesAssessment():
 @app.route("/stroke", methods=["POST"])
 def strokeAssessment():
     data = request.json
-    user_input = np.array([[data['gender'], data['age'], data['hypertension'], data['heart_disease'], data['ever_married'], data['residence_type'], data['bmi'], data['smoking_status']]])
-
+    user_input = np.array([[data['gender'], data['age'], data['hypertension'], data['heart_disease'], data['ever_married'], data['work_type'], data['residence_type'], data['bmi'], data['smoking_status']]])
     # Scale user input (same transformation as training)
     user_input_scaled = strokeScalar.transform(user_input)
 
