@@ -17,6 +17,9 @@ const Navbar = () => {
         <li>
           <NavLink to="/cardiovascular">Heart Disease</NavLink>
         </li>
+        <li>
+          <NavLink to="/disclaimer">Disclaimer</NavLink>
+        </li>
       </ul>
     </nav>
   );

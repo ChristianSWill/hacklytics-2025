@@ -196,3 +196,13 @@
     transform: rotate(360deg);
   }
 }
+
+.disclaimer {
+    color: var(--background-color);
+    padding: 1em 3em;
+    h2 {
+      font-size: 2rem;
+      text-align: center;
+      line-height: 1.5;
+    }
+}
