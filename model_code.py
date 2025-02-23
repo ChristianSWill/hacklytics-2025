@@ -12,7 +12,7 @@ def createDiabetesModel():
     diabetes = pd.read_csv('diabetes.csv')
 
     # Initialize X and y variables
-    X = diabetes[['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']]
+    X = diabetes[['Pregnancies', 'BloodPressure', 'BMI', 'DiabetesPedigreeFunction', 'Age']]
     y = diabetes['Outcome']
 
     # Separate into training and test sets
@@ -57,7 +57,7 @@ def createStrokeModel():
     stroke = pd.get_dummies(stroke)
     
     # Initialize X and y variables
-    X = stroke.drop('stroke')
+    X = stroke.drop(columns='stroke')
     y = stroke['stroke']
 
     # Separate into training and test sets
