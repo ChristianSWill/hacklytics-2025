@@ -51,5 +51,28 @@ def createDiabetesModel():
     # X_train_w_risk.to_csv('diabetes_training_with_outcome_and_risk.csv', index=False)
     # X_test_w_risk.to_csv('diabetes_test_with_outcome_and_risk.csv', index=False)
 
+def createStrokeModel():
+    # Read in Dataframe
+    stroke = pd.read_csv('healthcare-dataset-stroke-data.csv')
+    stroke = pd.get_dummies(stroke)
+    
+    # Initialize X and y variables
+    X = stroke.drop('stroke')
+    y = stroke['stroke']
+
+    # Separate into training and test sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 38)
+
+    # Scale features
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+
+    # Train model
+    rf = RandomForestClassifier(n_estimators=1000,max_leaf_nodes=35, random_state=38)
+    rf.fit(X_train_scaled, y_train)
+
+    joblib.dump(rf, 'random_forest_stroke.pkl')
+    joblib.dump(scaler, 'scaler.pkl')
+    return joblib.load("random_forest_stroke.pkl"), joblib.load("scaler.pkl")
 if __name__ == "__main__":
     createDiabetesModel()
