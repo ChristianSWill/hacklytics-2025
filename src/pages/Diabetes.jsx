@@ -1,7 +1,21 @@
 import React from "react";
+import Questions from "../components/Questions";
 
 const Diabetes = () => {
-  return <div>Diabetes</div>;
+  return (
+    <main className="main">
+      <div className="questions">
+        <div className="question-wrapper">
+          <Questions label="Number of Pregnancies" placeholder="2" />
+          <Questions label="Number of Pregnancies" placeholder="2" />
+          <Questions label="Number of Pregnancies" placeholder="2" />
+          <Questions label="Number of Pregnancies" placeholder="2" />
+          <Questions label="Number of Pregnancies" placeholder="2" />
+        </div>
+      </div>
+      <div className="risk">Risks</div>
+    </main>
+  );
 };
 
 export default Diabetes;

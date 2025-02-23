@@ -7,6 +7,8 @@
   --background-color: #4D4D4D;
   --accent-color: #EF901D;
   --text-color: #fff;
+  --white-color: #fff;
+  --black-color: #000;
 }
 
 *, *::before, *::after {
