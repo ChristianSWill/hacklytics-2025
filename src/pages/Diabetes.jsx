@@ -12,6 +12,7 @@ const Diabetes = () => {
           <Questions label="Number of Pregnancies" placeholder="2" />
           <Questions label="Number of Pregnancies" placeholder="2" />
         </div>
+        <button className="question-submit">Calculate Risks</button>
       </div>
       <div className="risk">Risks</div>
     </main>
