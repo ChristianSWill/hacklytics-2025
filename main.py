@@ -22,8 +22,15 @@ def diabetesAssessment():
     prediction = diabetesModel.predict(user_input_scaled)
 
     # Output result
-    return jsonify({"Percent Risk": f"{risk_percentage[0]:.2f}%", "Prediction": f"{'Diabetic' if prediction[0] == 1 else 'Not Diabetic'}"})
-
+    return jsonify({
+        "Percent Risk": f"{risk_percentage[0]:.2f}%",
+        "Prediction": (
+            "High Risk of Diabetes" if risk_percentage[0] >= 0.6 else
+            "Moderate Risk of Diabetes" if risk_percentage[0] >= 0.4 else
+            "Low Risk of Diabetes" if risk_percentage[0] >= 0.3 else
+            "Diabetes not likely"
+        )
+    })
 @app.route("/stroke", methods=["POST"])
 def strokeAssessment():
     data = request.json
@@ -36,8 +43,15 @@ def strokeAssessment():
     prediction = strokeModel.predict(user_input_scaled)
 
     # Output result
-    return jsonify({"Percent Risk": f"{risk_percentage[0]:.2f}%", "Prediction": f"{'Stroke' if prediction[0] == 1 else 'Not likely to have a stroke'}"})
-
+    return jsonify({
+    "Percent Risk": f"{risk_percentage[0]:.2f}%",
+    "Prediction": (
+        "High Risk of Stroke" if risk_percentage[0] >= 0.4 else
+        "Moderate Risk of Stroke" if risk_percentage[0] >= 0.2 else
+        "Low Risk of Stroke" if risk_percentage[0] >= 0.1 else
+        "Stroke not likely"
+    )
+    })
 @app.route("/heart-disease", methods=["POST"])
 def cardioAssessment():
     data = request.json
@@ -50,7 +64,14 @@ def cardioAssessment():
     prediction = cardioModel.predict(user_input_scaled)
 
     # Output result
-    return jsonify({"Percent Risk": f"{risk_percentage[0]:.2f}%", "Prediction": f"{'Cardiovascular Disease' if prediction[0] == 1 else 'Not likely to have a Cardiovascular Disease'}"})
-
+    return jsonify({
+        "Percent Risk": f"{risk_percentage[0]:.2f}%",
+        "Prediction": (
+            "High Risk of Cardiovascular Disease" if risk_percentage[0] >= 0.6 else
+            "Moderate Risk of Cardiovascular Disease" if risk_percentage[0] >= 0.4 else
+            "Low Risk of Cardiovascular Disease" if risk_percentage[0] >= 0.3 else
+            "Cardiovascular Disease not likely"
+        )
+    })
 if __name__ == "__main__":
     app.run(debug=True)
